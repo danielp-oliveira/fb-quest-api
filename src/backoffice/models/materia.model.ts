@@ -5,6 +5,5 @@ export class Materia {
     public nome: string,
     public ativa: boolean,
     public vestibular: Vestibular,
-    public assuntos: Assunto[],
   ) {}
 }

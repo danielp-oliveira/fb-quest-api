@@ -13,6 +13,5 @@ export class Questao {
     public vestibular: Vestibular,
     public materia: Materia,
     public assunto: Assunto,
-    public alternativas: Alternativa[],
   ) {}
 }

@@ -6,6 +6,5 @@ export class Assunto {
     public nome: string,
     public ativo: boolean,
     public materia: Materia,
-    public questoes: Questao[]
   ) {}
 }

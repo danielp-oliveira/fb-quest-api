@@ -2,7 +2,6 @@ import { Materia } from './materia.model';
 export class Vestibular {
   constructor(
     public nome: string,
-    public ativo: boolean,
-    public materias: Materia[],
+    public ativo: boolean
   ) {}
 }
