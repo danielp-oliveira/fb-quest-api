@@ -4,10 +4,7 @@ export const MateriaSchema = new mongoose.Schema({
   nome: {
     type: String,
     required: true,
-    trim: true,
-    index: {
-      unique: true,
-    },
+    trim: true
   },
   ativa: {
     type: Boolean,
