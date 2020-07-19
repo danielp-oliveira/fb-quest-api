@@ -1,4 +1,3 @@
-import { Questao } from './questao.model';
 import { Materia } from './materia.model';
 
 export class Assunto {
