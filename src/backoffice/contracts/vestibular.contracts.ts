@@ -1,4 +1,4 @@
-import { Validator } from '../utils/validator.util';
+import { Validator } from '../../utils/validator.util';
 import { Contract } from './contract';
 import { Vestibular } from '../models/vestibular.model';
 
