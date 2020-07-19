@@ -8,9 +8,13 @@ import { VestibularSchema } from './schemas/vestibular.schema';
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: 'Vestibular', schema: VestibularSchema },
-      { name: 'Materia', schema: MateriaSchema },
-      { name: 'Questao', schema: QuestaoSchema },
+      {
+        name: 'Vestibular',
+        schema: VestibularSchema,
+        collection: 'vestibulares',
+      },
+      { name: 'Materia', schema: MateriaSchema, collection: 'materias' },
+      { name: 'Questao', schema: QuestaoSchema, collection: 'questoes' },
     ]),
   ],
   controllers: [VestibularController],
