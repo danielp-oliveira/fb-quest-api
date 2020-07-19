@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common';
+import { VestibularController } from './controllers/vestibular.controller';
 
-@Module({})
+@Module({
+  controllers: [VestibularController]
+})
 export class BackofficeModule {}
