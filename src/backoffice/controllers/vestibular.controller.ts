@@ -1,24 +1,32 @@
-import { Controller, Get, Post, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
 
 @Controller('v1/vestibulares')
 export class VestibularController {
-  @Get()
+  @Get('admin')
   get() {
     return 'Obter os vestibulares';
   }
 
-  @Post()
-  post() {
-    return 'Criar um vestibular';
+  @Get('admin/:id')
+  getById(@Param('id') id) {
+    return 'Obter o vestibular ' + id;
   }
 
-  @Put()
-  put() {
-    return 'Atualizar um vestibular';
+  @Post('admin')
+  post(@Body() body) {
+    return body;
   }
 
-  @Delete()
-  delete() {
-    return 'Remover um vestibular';
+  @Put('admin/:id')
+  put(@Param('id') id, @Body() body) {
+    return {
+      vestibular: id,
+      data: body
+    };
+  }
+
+  @Delete('admin/:id')
+  delete(@Param('id') id) {
+    return 'Remover o vestibular ' + id;
   }
 }
