@@ -1,4 +1,4 @@
-export class Validation {
+export class Validator {
   constructor(public errors: any[] = []) {}
 
   isRequired(value, message) {

@@ -1,4 +1,4 @@
-import { Validation } from '../utils/validation.util';
+import { Validator } from '../utils/validator.util';
 import { Contract } from './contract';
 import { Vestibular } from '../models/vestibular.model';
 
@@ -6,11 +6,11 @@ export class CreateVestibularContract implements Contract {
   errors: any[];
 
   validate(model: Vestibular): boolean {
-    const validation = new Validation();
+    const validator = new Validator();
 
-    validation.hasMinLen(model.nome, 3, 'Nome inválido');
+    validator.hasMinLen(model.nome, 3, 'Nome inválido');
 
-    this.errors = validation.errors;
-    return validation.isValid();
+    this.errors = validator.errors;
+    return validator.isValid();
   }
 }
