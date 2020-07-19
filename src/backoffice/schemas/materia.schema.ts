@@ -18,7 +18,6 @@ export const MateriaSchema = new mongoose.Schema({
     {
       nome: {
         type: String,
-        ativo: Boolean,
       },
       ativo: {
         type: Boolean,
