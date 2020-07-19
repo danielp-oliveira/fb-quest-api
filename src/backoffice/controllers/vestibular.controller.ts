@@ -6,9 +6,12 @@ import {
   Delete,
   Param,
   Body,
+  UseInterceptors,
 } from '@nestjs/common';
 import { Vestibular } from '../models/vestibular.model';
 import { Result } from '../models/result.model';
+import { ValidatorInterceptor } from '../../interceptors/validator.interceptor';
+import { CreateVestibularContract } from '../contracts/vestibular.contracts';
 
 @Controller('v1/vestibulares')
 export class VestibularController {
@@ -23,6 +26,7 @@ export class VestibularController {
   }
 
   @Post('admin')
+  @UseInterceptors(new ValidatorInterceptor(new CreateVestibularContract()))
   post(@Body() body: Vestibular) {
     return new Result('Vestibular criado com sucesso!', true, body, null);
   }
