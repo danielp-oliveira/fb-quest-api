@@ -31,9 +31,7 @@ export class VestibularController {
   @Post('admin')
   @UseInterceptors(new ValidatorInterceptor(new CreateVestibularContract()))
   async post(@Body() model: Vestibular): Promise<any> {
-    const vestibular = await this.vestibularService.create(
-      new Vestibular(model.nome, model.ativo),
-    );
+    const vestibular = await this.vestibularService.create(model);
     return MakeOkResultDto('Vestibular criado com sucesso!', vestibular);
   }
 
