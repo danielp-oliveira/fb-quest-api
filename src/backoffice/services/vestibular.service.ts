@@ -9,8 +9,8 @@ export class VestibularSerivce {
     @InjectModel('Vestibular') private readonly model: Model<Vestibular>,
   ) {}
 
-  create(data: Vestibular): Promise<Vestibular> {
+  async create(data: Vestibular): Promise<Vestibular> {
     const vestibular = this.model(data);
-    return vestibular.save();
+    return await vestibular.save();
   }
 }

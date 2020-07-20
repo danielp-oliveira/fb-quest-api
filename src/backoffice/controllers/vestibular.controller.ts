@@ -12,9 +12,12 @@ import { Vestibular } from '../models/vestibular.model';
 import { Result } from '../models/result.model';
 import { ValidatorInterceptor } from '../../interceptors/validator.interceptor';
 import { CreateVestibularContract } from '../contracts/vestibular.contracts';
+import { VestibularSerivce } from '../services/vestibular.service';
 
 @Controller('v1/vestibulares')
 export class VestibularController {
+  constructor(private readonly vestibularService: VestibularSerivce) {}
+
   @Get('admin')
   get() {
     return new Result(null, true, [], null);
@@ -27,8 +30,11 @@ export class VestibularController {
 
   @Post('admin')
   @UseInterceptors(new ValidatorInterceptor(new CreateVestibularContract()))
-  post(@Body() body: Vestibular) {
-    return new Result('Vestibular criado com sucesso!', true, body, null);
+  async post(@Body() model: Vestibular) {
+    const vestibular = await this.vestibularService.create(
+      new Vestibular(model.nome, model.ativo),
+    );
+    return new Result('Vestibular criado com sucesso!', true, vestibular, null);
   }
 
   @Put('admin/:id')

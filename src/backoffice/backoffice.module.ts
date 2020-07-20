@@ -4,6 +4,7 @@ import { VestibularController } from './controllers/vestibular.controller';
 import { MateriaSchema } from './schemas/materia.schema';
 import { QuestaoSchema } from './schemas/questao.schema';
 import { VestibularSchema } from './schemas/vestibular.schema';
+import { VestibularSerivce } from './services/vestibular.service';
 
 @Module({
   imports: [
@@ -18,5 +19,6 @@ import { VestibularSchema } from './schemas/vestibular.schema';
     ]),
   ],
   controllers: [VestibularController],
+  providers: [VestibularSerivce],
 })
 export class BackofficeModule {}
