@@ -7,10 +7,13 @@ import {
   Param,
   Body,
   UseInterceptors,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { ValidatorInterceptor } from '@/interceptors';
 import { CreateVestibularContract } from '@/backoffice/contracts';
-import { Result, Vestibular } from '@/backoffice/models';
+import { Vestibular } from '@/backoffice/models';
+import { ResultDto } from '@/backoffice/dtos';
 import { VestibularSerivce } from '@/backoffice/services';
 
 @Controller('v1/vestibulares')
@@ -19,12 +22,12 @@ export class VestibularController {
 
   @Get('admin')
   get() {
-    return new Result(null, true, [], null);
+    return new ResultDto(null, true, [], null);
   }
 
   @Get('admin/:id')
   getById(@Param('id') id: string) {
-    return new Result(null, true, {}, null);
+    return new ResultDto(null, true, {}, null);
   }
 
   @Post('admin')
@@ -33,16 +36,26 @@ export class VestibularController {
     const vestibular = await this.vestibularService.create(
       new Vestibular(model.nome, model.ativo),
     );
-    return new Result('Vestibular criado com sucesso!', true, vestibular, null);
+    return new ResultDto(
+      'Vestibular criado com sucesso!',
+      true,
+      vestibular,
+      null,
+    );
   }
 
   @Put('admin/:id')
   put(@Param('id') id, @Body() body: Vestibular) {
-    return new Result('Vestibular atualizado com sucesso!', true, body, null);
+    return new ResultDto(
+      'Vestibular atualizado com sucesso!',
+      true,
+      body,
+      null,
+    );
   }
 
   @Delete('admin/:id')
   delete(@Param('id') id: string) {
-    return new Result('Vestibular removido com sucesso!', true, null, null);
+    return new ResultDto('Vestibular removido com sucesso!', true, null, null);
   }
 }
