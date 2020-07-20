@@ -3,6 +3,6 @@ export class ResultDto {
     public message: string,
     public success: boolean,
     public data: any,
-    public erros: any,
+    public errors: any,
   ) {}
 }
