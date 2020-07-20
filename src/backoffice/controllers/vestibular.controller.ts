@@ -8,11 +8,10 @@ import {
   Body,
   UseInterceptors,
 } from '@nestjs/common';
-import { Vestibular } from '../models/vestibular.model';
-import { Result } from '../models/result.model';
-import { ValidatorInterceptor } from '../../interceptors/validator.interceptor';
-import { CreateVestibularContract } from '../contracts/vestibular.contracts';
-import { VestibularSerivce } from '../services/vestibular.service';
+import { ValidatorInterceptor } from '@/interceptors';
+import { CreateVestibularContract } from '@/backoffice/contracts';
+import { Result, Vestibular } from '@/backoffice/models';
+import { VestibularSerivce } from '@/backoffice/services';
 
 @Controller('v1/vestibulares')
 export class VestibularController {

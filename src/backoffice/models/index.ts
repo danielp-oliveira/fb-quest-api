@@ -1,0 +1,6 @@
+export * from './alternativa.model'
+export * from './assunto.model'
+export * from './materia.model'
+export * from './questao.model'
+export * from './result.model'
+export * from './vestibular.model'

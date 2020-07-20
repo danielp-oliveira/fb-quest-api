@@ -1,4 +1,4 @@
-import { Materia } from './materia.model';
+import { Materia } from '@/backoffice/models';
 
 export class Assunto {
   constructor(

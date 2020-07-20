@@ -1,4 +1,4 @@
-import { Questao } from './questao.model';
+import { Questao } from '@/backoffice/models';
 
 export class Alternativa {
   constructor(

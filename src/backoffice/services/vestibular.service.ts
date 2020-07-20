@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Vestibular } from '../models/vestibular.model';
+import { Vestibular } from '@/backoffice/models';
 
 @Injectable()
 export class VestibularSerivce {

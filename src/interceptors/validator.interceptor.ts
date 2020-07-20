@@ -6,8 +6,8 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { Contract } from '../backoffice/contracts/contract';
-import { Result } from '../backoffice/models/result.model';
+import { Contract } from '@/backoffice/contracts';
+import { Result } from '@/backoffice/models';
 
 @Injectable()
 export class ValidatorInterceptor implements NestInterceptor {

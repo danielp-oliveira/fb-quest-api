@@ -1,5 +1,4 @@
-import { Vestibular } from './vestibular.model';
-import { Assunto } from './assunto.model';
+import { Assunto, Vestibular } from '@/backoffice/models';
 
 export class Materia {
   constructor(

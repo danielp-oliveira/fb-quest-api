@@ -1,7 +1,4 @@
-import { Alternativa } from './alternativa.model';
-import { Assunto } from './assunto.model';
-import { Materia } from './materia.model';
-import { Vestibular } from './vestibular.model';
+import { Alternativa, Assunto, Materia, Vestibular } from '@/backoffice/models';
 
 export class Questao {
   constructor(

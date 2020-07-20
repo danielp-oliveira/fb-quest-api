@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { VestibularController } from './controllers/vestibular.controller';
-import { MateriaSchema } from './schemas/materia.schema';
-import { QuestaoSchema } from './schemas/questao.schema';
-import { VestibularSchema } from './schemas/vestibular.schema';
-import { VestibularSerivce } from './services/vestibular.service';
+import { VestibularController } from '@/backoffice/controllers';
+import {
+  MateriaSchema,
+  QuestaoSchema,
+  VestibularSchema,
+} from '@/backoffice/schemas';
+import { VestibularSerivce } from '@/backoffice/services';
 
 @Module({
   imports: [
