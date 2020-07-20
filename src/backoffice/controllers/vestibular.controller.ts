@@ -7,11 +7,13 @@ import {
   Param,
   Body,
   UseInterceptors,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { ValidatorInterceptor } from '@/interceptors';
 import { CreateVestibularContract } from '@/backoffice/contracts';
 import { Vestibular } from '@/backoffice/models';
-import { MakeOkResultDto } from '@/backoffice/helpers';
+import { MakeOkResultDto, MakeErrorResultDto } from '@/backoffice/helpers';
 import { VestibularSerivce } from '@/backoffice/services';
 
 @Controller('v1/vestibulares')
@@ -31,8 +33,15 @@ export class VestibularController {
   @Post('admin')
   @UseInterceptors(new ValidatorInterceptor(new CreateVestibularContract()))
   async post(@Body() model: Vestibular): Promise<any> {
-    const vestibular = await this.vestibularService.create(model);
-    return MakeOkResultDto('Vestibular criado com sucesso!', vestibular);
+    try {
+      const vestibular = await this.vestibularService.create(model);
+      return MakeOkResultDto('Vestibular criado com sucesso!', vestibular);
+    } catch (error) {
+      throw new HttpException(
+        MakeErrorResultDto('Não foi possível realizar o cadastro', error),
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   @Put('admin/:id')
