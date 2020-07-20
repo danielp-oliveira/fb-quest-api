@@ -8,5 +8,5 @@ export const MakeErrorResultDto = (
   message: string,
   errors: any,
 ): ResultDto => {
-  return new ResultDto(message, true, null, errors);
+  return new ResultDto(message, false, null, errors);
 };
