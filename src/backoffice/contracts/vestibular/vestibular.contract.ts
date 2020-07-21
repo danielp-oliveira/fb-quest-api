@@ -1,6 +1,6 @@
 import { Validator } from '@/utils/validator.util';
-import { Vestibular } from '@/backoffice/models/vestibular.model';
-import { Contract } from './contract';
+import { Vestibular } from '@/backoffice/models';
+import { Contract } from '@/backoffice/contracts';
 
 export class AddVestibularContract implements Contract {
   errors: any[];

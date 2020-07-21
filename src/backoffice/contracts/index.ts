@@ -1,2 +1,2 @@
 export * from './contract'
-export * from './vestibular.contracts'
+export * from './vestibular/vestibular.contract'
