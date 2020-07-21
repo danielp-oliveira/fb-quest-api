@@ -11,7 +11,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { ValidatorInterceptor } from '@/interceptors';
-import { CreateVestibularContract } from '@/backoffice/contracts';
+import { AddVestibularContract } from '@/backoffice/contracts';
 import { Vestibular } from '@/backoffice/models';
 import { MakeOkResultDto, MakeErrorResultDto } from '@/backoffice/helpers';
 import { VestibularSerivce } from '@/backoffice/services';
@@ -21,36 +21,69 @@ export class VestibularController {
   constructor(private readonly vestibularService: VestibularSerivce) {}
 
   @Get('admin')
-  get() {
-    return MakeOkResultDto(null, []);
+  async get() {
+    try {
+      const vestibulares = await this.vestibularService.get();
+      return MakeOkResultDto(null, vestibulares);
+    } catch (error) {
+      throw new HttpException(
+        MakeErrorResultDto('Não foi obter os vestibulares', error),
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   @Get('admin/:id')
-  getById(@Param('id') id: string) {
-    return MakeOkResultDto(null, {});
+  async getById(@Param('id') id: string) {
+    try {
+      const vestibular = await this.vestibularService.getById(id);
+      return MakeOkResultDto(null, vestibular);
+    } catch (error) {
+      throw new HttpException(
+        MakeErrorResultDto('Não foi obter o vestibular', error),
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   @Post('admin')
-  @UseInterceptors(new ValidatorInterceptor(new CreateVestibularContract()))
+  @UseInterceptors(new ValidatorInterceptor(new AddVestibularContract()))
   async post(@Body() model: Vestibular): Promise<any> {
     try {
       const vestibular = await this.vestibularService.create(model);
       return MakeOkResultDto('Vestibular criado com sucesso!', vestibular);
     } catch (error) {
       throw new HttpException(
-        MakeErrorResultDto('Não foi possível realizar o cadastro', error),
+        MakeErrorResultDto('Não foi possível cadastrar o vestibular', error),
         HttpStatus.BAD_REQUEST,
       );
     }
   }
 
   @Put('admin/:id')
-  put(@Param('id') id, @Body() body: Vestibular) {
-    return MakeOkResultDto('Vestibular atualizado com sucesso!', body);
+  @UseInterceptors(new ValidatorInterceptor(new AddVestibularContract()))
+  async put(@Param('id') id, @Body() model: Vestibular) {
+    try {
+      const vestibular = await this.vestibularService.update(id, model);
+      return MakeOkResultDto('Vestibular atualizado com sucesso!', vestibular);
+    } catch (error) {
+      throw new HttpException(
+        MakeErrorResultDto('Não foi possível atualizar o vestibular', error),
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   @Delete('admin/:id')
-  delete(@Param('id') id: string) {
-    return MakeOkResultDto('Vestibular removido com sucesso!', null);
+  async delete(@Param('id') id: string) {
+    try {
+      const vestibular = await this.vestibularService.delete(id);
+      return MakeOkResultDto('Vestibular removido com sucesso!', vestibular);
+    } catch (error) {
+      throw new HttpException(
+        MakeErrorResultDto('Não foi possível remover o vestibular', error),
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 }

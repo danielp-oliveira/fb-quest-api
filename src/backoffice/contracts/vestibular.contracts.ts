@@ -2,7 +2,7 @@ import { Validator } from '@/utils/validator.util';
 import { Vestibular } from '@/backoffice/models/vestibular.model';
 import { Contract } from './contract';
 
-export class CreateVestibularContract implements Contract {
+export class AddVestibularContract implements Contract {
   errors: any[];
 
   validate(model: Vestibular): boolean {
